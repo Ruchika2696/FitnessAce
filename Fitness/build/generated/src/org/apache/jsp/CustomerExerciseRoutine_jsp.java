@@ -4,10 +4,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.sql.*;
-import java.time.*;
 import database.DatabaseConnect;
 
-public final class addcustomer_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class CustomerExerciseRoutine_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -50,7 +49,6 @@ public final class addcustomer_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("\n");
       out.write("<html lang=\"en\">\n");
@@ -82,146 +80,90 @@ public final class addcustomer_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("</head>\n");
       out.write("\n");
       out.write("<body>\n");
-      out.write("    <a href=\"Owner.jsp\"><h1 class=\"colored bold\">Go back to Home</h1></a>\n");
-      out.write("     ");
- 
-        if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
-    
-      out.write("\n");
-      out.write("    <h2 class=\" condensed uppercase no-padding no-margin bold gray1\">You're not logged in!Login<a href='index.jsp'> <h2 class=\" condensed uppercase no-padding no-margin bold colored\">HERE</h2></a> </h2>    \n");
-      out.write("    ");
- 
-        } 
-        else{
-    
-      out.write("\n");
-      out.write("\t\n");
-      out.write("   <section id=\"features\" class=\"container\">\n");
+      out.write("    <a href=\"Admin.jsp\"><h1 class=\"colored bold\">Go back to Home</h1></a>\n");
+      out.write("\t<section id=\"features\" class=\"container\">\n");
       out.write("\n");
       out.write("\t\t<div class=\"inner\">\n");
       out.write("\n");
       out.write("\t\t\t<!-- Header -->\n");
       out.write("\t\t\t<h1 class=\"colored fancy\">Fitness Ace!</span></h1>\n");
+      out.write("                        \n");
       out.write("\n");
-      out.write("\t\t\t<!-- Login box-->\n");
-      out.write("\t\t\t\t<form name=\"login\" method=\"post\" action=\"\">\n");
-      out.write("                                    \n");
-      out.write("                                        <p class=\"colored bold\">Customer id:</p><input type=\"text\" name=\"oid\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer name:</p><input type=\"text\" name=\"oname\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's address:</p><input type=\"textbox\" name=\"oaddress\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's email:</p><input type=\"text\" name=\"oemail\"/><br/>\n");
-      out.write("\t\t\t\t\t<p class=\"colored bold\">Customer's conatct:</p><input type=\"text\" name=\"ocontact\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's password:</p><input type=\"text\" name=\"opassword\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's DOB:</p><input type=\"text\" placeholder=\"yyyy/mm/dd\" name=\"odob\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's height in cm:</p><input type=\"text\" name=\"oheight\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's weight:</p><input type=\"text\" name=\"oweight\"/><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's gender:</p><p class=\"colored bold\">Male:<input type=\"radio\" name=\"ogender\" value=\"m\"/> Female:<input type=\"radio\" name=\"ogender\" value=\"f\"/> </p><br/>\n");
-      out.write("                                        <p class=\"colored bold\">Customer's lifestyle:</p><p class=\"colored bold\">Sedentary:<input type=\"radio\" name=\"oroutine\" value=\"s\"/> Moderate:<input type=\"radio\" name=\"oroutine\" value=\"m\"/> Intense:<input type=\"radio\" name=\"oroutine\" value=\"i\"/></p><br/>\n");
-      out.write("                                        \n");
-      out.write("                                        <input type=\"submit\" name=\"submit\" value=\"Done!\"/>\n");
-      out.write("\t\t\t\t\t</form>\n");
-      out.write("\t\t\t\n");
- 
-   String userid = (String)(session.getAttribute("userid"));
-   String ocategory = "u";    
-   String oname =request.getParameter("oname");
-   String oaddress= request.getParameter("oaddress");
-   String oemail= request.getParameter("oemail");
-   String ocontact= request.getParameter("ocontact");
-   String opassword= request.getParameter("opassword");
-   String oid= request.getParameter("oid");
-   String gid=null; 
-   String oroutine = request.getParameter("oroutine");
-   String oheight = request.getParameter("oheight");
-   String oweight = request.getParameter("oweight");
-   String odob = request.getParameter("odob");
-   String[] date1;
-   String ogender = request.getParameter("ogender");
-   double routine=0;
-   double bmr=5;
-   int age=0;
-   if(odob!=null)
-   {
-       
-   date1 = odob.split("/");
-   
-   LocalDate date_of_birth = LocalDate.of(Integer.parseInt(date1[0]), Integer.parseInt(date1[1]), Integer.parseInt(date1[2]));
-   LocalDate now = LocalDate.now();
-   age = Period.between(date_of_birth, now).getYears();
-   }
-   if (oroutine == "s")
-                            routine = 1.2;
-   else if (oroutine=="m")
-                            routine = 1.4625;
-   else if (oroutine=="i")
-                            routine = 1.8125;
-   try{
-   if (ogender.equals("m")) {
-                            bmr = 66.5 + (13.75 * Integer.parseInt(oweight)) + (5.003 * Integer.parseInt(oheight)) - (6.755 * age);
-                        } 
-   else if (ogender.equals("f")) {
-                            bmr = 655.1 + (9.563 * Integer.parseInt(oweight)) + (1.850 * Integer.parseInt(oheight)) - (4.676 * age);
-                        }
-   }catch(Exception e)
-   {
-       
-   }
-        Connection con = DatabaseConnect.dbconnect();
-        Statement ps = con.createStatement();
-        //String sql = "INSERT INTO gyms(gym_id, name, address, contact, email) VALUES(?,?,?,?,?)";
-        //PreparedStatement pstmt = con.prepareStatement(sql);      
+      out.write("            <!-- Controls -->\n");
+      out.write("                        <div>\n");
+      out.write("                            ");
+         
+                                String userid = null;
+                                String foodname=null;
+                                String measure=null;
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+        for(Cookie cookie : cookies){
+	if(cookie.getName().equals("user_id")) 
+            userid = cookie.getValue();
+                                
+        }}
+                  
                 try{
-        ResultSet rs = ps.executeQuery("select * from user_detail where user_id='"+userid+"'");
+                     Connection con = DatabaseConnect.dbconnect();
+        Statement ps = con.createStatement();
+        ResultSet rs = ps.executeQuery("SELECT ac.name,ca.duration from activities ac ,customer_activity ca where ac.activity_id=ca.activity_id");
+        
+      out.write("\n");
+      out.write("        <table style=\"width:100%\">\n");
+      out.write("            <tr>\n");
+      out.write("                \n");
+      out.write("                <td class=\"colored bold\"><h2>Name</h2></td>\n");
+      out.write("                <td class=\"colored bold\"><h2>Amount</h2></td>\n");
+      out.write("                <td class=\"colored bold\"><h2>Measure</h2></td>\n");
+      out.write("                <td class=\"colored bold\"><h2>Time</h2></td>\n");
+      out.write("                  \n");
+      out.write("            </tr>   \n");
+      out.write("        \n");
+      out.write("        ");
+
         while(rs.next())
         {
-        gid = rs.getString("gym_id");
-                }
-       //out.println("<h1>details are" +name+ " "+ category+"</h1>");
+           
+            
         
-               }
+      out.write("\n");
+      out.write("        <tr>\n");
+      out.write("            <td class=\"colored bold\">");
+      out.print(rs.getString("name") );
+      out.write("</td>\n");
+      out.write("            <td class=\"colored bold\">");
+      out.print(rs.getString("duration") );
+      out.write("</td>\n");
+      out.write("                      \n");
+      out.write("            \n");
+      out.write("        </tr>\n");
+      out.write("        ");
+
+        
+        }      
+      out.write("</table> </div>");
+
+                }
                 catch(Exception e)
                 {
                     System.out.println(e);
                 }
-                  
-        try{
-       
-      int count1 = ps.executeUpdate("insert into user_detail values ('" + oid + "','" + oname + "','" + oemail + "','" + ocontact + "','" + oaddress + "','" + ocategory + "','" + gid + "','" + opassword + "')");
-      int count2 = ps.executeUpdate("insert into customer_personal_data values ('" + oid + "','" + odob + "','" + oheight + "','" + oweight + "','" + ogender + "','"  + oroutine + "','" + bmr + "')");
-       //out.println("<h1>details are" +name+ " "+ category+"</h1>");
-     
-        
- 
-       
-             
-           // pstmt.setString(1, gid);
-            //pstmt.setString(2, gname);
-            //pstmt.setString(3, gaddress);
-            //pstmt.set(4, Long.parseLong(request.getParameter("contact")) );
-            //pstmt.setString(5,gemail);
-            //pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    
-       
-       
-              
-
+			
+			
       out.write("\n");
       out.write("\t\t\t\n");
+      out.write("\t\t\t\t\t \n");
+      out.write("        \n");
+      out.write("\t\t</div><!-- End About Inner -->\n");
+      out.write("\t</section><!-- End About Section -->\n");
       out.write("\n");
-      out.write("\t\t</div> <!-- End Features Inner -->\n");
-      out.write("\n");
-      out.write("\t</section><!-- End Features Section -->\n");
+      out.write("  \n");
       out.write("    \n");
       out.write("\n");
-      out.write("\t");
-
-        }
-
-      out.write("\n");
-      out.write("\n");
+      out.write("\t\n");
+      out.write("\t</div>\n");
+      out.write("\t</section><!-- End Team Section -->  \n");
       out.write("    \n");
       out.write("\t\n");
       out.write("    \n");
@@ -274,18 +216,13 @@ public final class addcustomer_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t<script type=\"text/javascript\" src=\"js/plugins.js\"></script>\n");
       out.write("\n");
       out.write("\t<script>\n");
-      out.write("\n");
       out.write("  $(\"a.about-icon\").hover(function () {\n");
       out.write("    $(this).children(\"i\").addClass(\"fa-spin\");\n");
       out.write(" }, function(){\n");
       out.write(" \t$(this).children(\"i\").removeClass(\"fa-spin\");\n");
       out.write(" });\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("</body>\n");
-      out.write("\n");
-      out.write("</html>\n");
+      out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

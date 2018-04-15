@@ -107,9 +107,10 @@
 			<!-- Header -->
 			<h1 class="header light gray3 fancy"><span class="colored">What are you </span>upto?</h1>
 			<br>
-			<a href="addgym.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Customer Data</span></h3></a>
-			<h3 class="header light gray3 fancy"><span class="colored">Provide Diet Chart</span></h3>
-			<h3 class="header light gray3 fancy"><span class="colored">Update Information</span></h3>
+			<a href="searchcustomer.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Customer Data</span></h3></a>
+			<a href="viewFoodItems.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Diet Items</span></h3>
+                        <a href="giveDiRoutine.jsp"><h3 class="header light gray3 fancy"><span class="colored">Give Diet Routine</span></h3>
+			<a href="updateMe.jsp"><h3 class="header light gray3 fancy"><span class="colored">Update Information</span></h3>
 			
 			
 					 

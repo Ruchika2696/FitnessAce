@@ -1,0 +1,19 @@
+SMAP
+viewExercises_jsp.java
+JSP
+*S JSP
+*F
++ 0 viewExercises.jsp
+viewExercises.jsp
+*L
+5,48:46
+53,12:95
+64,10:107
+74,4:118
+77,2:122
+79,3:124,3
+82,4:133
+87:139,2
+88,7:142
+94,73:149
+*E

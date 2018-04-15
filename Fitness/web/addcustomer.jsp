@@ -109,12 +109,17 @@
                             routine = 1.4625;
    else if (oroutine=="i")
                             routine = 1.8125;
-   if (ogender == "m") {
+   try{
+   if (ogender.equals("m")) {
                             bmr = 66.5 + (13.75 * Integer.parseInt(oweight)) + (5.003 * Integer.parseInt(oheight)) - (6.755 * age);
                         } 
-   else if (ogender == "f") {
+   else if (ogender.equals("f")) {
                             bmr = 655.1 + (9.563 * Integer.parseInt(oweight)) + (1.850 * Integer.parseInt(oheight)) - (4.676 * age);
                         }
+   }catch(Exception e)
+   {
+       
+   }
         Connection con = DatabaseConnect.dbconnect();
         Statement ps = con.createStatement();
         //String sql = "INSERT INTO gyms(gym_id, name, address, contact, email) VALUES(?,?,?,?,?)";

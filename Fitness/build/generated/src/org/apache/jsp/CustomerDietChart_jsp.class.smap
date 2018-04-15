@@ -1,0 +1,19 @@
+SMAP
+CustomerDietChart_jsp.java
+JSP
+*S JSP
+*F
++ 0 CustomerDietChart.jsp
+CustomerDietChart.jsp
+*L
+5,49:46
+54,16:96
+69,12:112
+81,5:125
+85,2:130
+87,4:132,3
+91,4:144
+96:150,2
+97,7:153
+103,72:160
+*E

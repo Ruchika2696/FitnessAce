@@ -108,9 +108,10 @@
 			<!-- Header -->
 			<h1 class="header light gray3 fancy"><span class="colored">What are you </span>upto?</h1>
 			<br>
-			<a href="userdata.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Customer Data</span></h3></a>
-			<h3 class="header light gray3 fancy"><span class="colored">Provide Exercise Routine</span></h3>
-			<h3 class="header light gray3 fancy"><span class="colored">Update Information</span></h3>
+			<a href="searchcustomer.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Customer Data</span></h3></a>
+                        <a href="viewExRoutine.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Exercises</span></h3>
+                        <a href="giveExRoutine.jsp"><h3 class="header light gray3 fancy"><span class="colored">Provide Exercise Routine</span></h3>
+			<a href="updateMe.jsp"<h3 class="header light gray3 fancy"><span class="colored">Update Information</span></h3>
 			
 			
 					 

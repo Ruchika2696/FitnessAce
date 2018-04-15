@@ -109,10 +109,10 @@
 			<br>
                        <a href="addemployee.jsp"> <h3 class="header light gray3 fancy"><span class="colored">ADD Employee</span></h3>
                        <a href="addcustomer.jsp"> <h3 class="header light gray3 fancy"><span class="colored">ADD Customer</span></h3>
-                        <h3 class="header light gray3 fancy"><span class="colored">REMOVE Employee</span></h3>
-                        <h3 class="header light gray3 fancy"><span class="colored">REMOVE Customer</span></h3>
-			<h3 class="header light gray3 fancy"><span class="colored">Employee Records</span></h3>
-			<h3 class="header light gray3 fancy"><span class="colored">Customer Records</span></h3>
+                        <a href="removeEmployee.jsp"> <h3 class="header light gray3 fancy"><span class="colored">REMOVE Employee</span></h3>
+                       <a href="removeCustomer.jsp">  <h3 class="header light gray3 fancy"><span class="colored">REMOVE Customer</span></h3>
+			 <a href="searchemployee.jsp"><h3 class="header light gray3 fancy"><span class="colored">Employee Records</span></h3>
+			 <a href="searchcustomer.jsp"><h3 class="header light gray3 fancy"><span class="colored">Customer Records</span></h3>
 			
 					 
 			<hr>       <hr>

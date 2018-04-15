@@ -107,7 +107,7 @@
 			<h1 class="header light gray3 fancy"><span class="colored">What are you </span>upto?</h1>
 			<br>
 			<a href="addgym.jsp"><h3 class="header light gray3 fancy"><span class="colored">Add gym</span></h3></a>
-                        <a href="gymrecords.jsp"><h3 class="header light gray3 fancy"><span class="colored">Gym Records</span></h3></a>
+                        <a href="searchgym.jsp"><h3 class="header light gray3 fancy"><span class="colored">Gym Records</span></h3></a>
                         <a href="removegym.jsp"><h3 class="header light gray3 fancy"><span class="colored">Remove Gym </span></h3></a>
 			
 			

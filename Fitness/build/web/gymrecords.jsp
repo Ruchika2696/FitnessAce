@@ -1,5 +1,5 @@
 <%-- 
-    Document   : gymrecords
+    Document   : addgym
     Created on : Mar 3, 2018, 5:57:15 PM
     Author     : mypc
 --%>
@@ -38,53 +38,74 @@
 </head>
 
 <body>
-	
-   <section id="features" class="container">
+    <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
+	<section id="features" class="container">
 
 		<div class="inner">
 
 			<!-- Header -->
 			<h1 class="colored fancy">Fitness Ace!</span></h1>
+                        
 
-			<!-- Login box-->
-				<form name="login" method="post" action="">
-                                    
-				<p class="colored bold">Name:</p><input type="text" name="name" /><br/>
-                                        <input type="submit" name="submit" value="Done!"/>
-					</form>
-			
-<% 
-   
-    String gname= null;
-  
-  
-    
-    
-
-    gname= request.getParameter("name");
-    
-  
-        Connection con = DatabaseConnect.dbconnect();
-        Statement ps = con.createStatement();
+            <!-- Controls -->
+                        <div>
+                            <%         
+                   String gname = request.getParameter("gname");
+                  char fchar='/';
+                   if(gname != null)
+                   {
+                       
+                                fchar = gname.charAt(0); }
+                  
                 try{
-       int count = ps.executeUpdate("delete from gyms where name='"+gname+"'");
+                     Connection con = DatabaseConnect.dbconnect();
+        Statement ps = con.createStatement();
+        ResultSet rs = ps.executeQuery("select * from gyms where name!='null'");
+        %>
+        <table style="width:100%">
+            <tr>
+                <td class="colored bold"><h2>Name</h2></td>
+                <td class="colored bold"><h2>Address</h2></td>
+                <td class="colored bold"><h2>Contact</h2></td>
+                <td class="colored bold" ><h2>Email</h2></td>
+            
+            </tr>   
         
-       //out.println("<h1>details are" +name+ " "+ category+"</h1>");
+        <%
+        while(rs.next())
+        {
         
-               }
+        %>
+        <tr>
+            <td class="colored bold"><%=rs.getString("name") %></td>
+            <td class="colored bold"><%=rs.getString("address") %></td>
+            <td class="colored bold"><%=rs.getString("contact") %></td>
+            <td class="colored bold"><%=rs.getString("email") %></td>
+            
+        </tr>
+        <%
+        
+        }      %></table> </div><%
+                }
                 catch(Exception e)
                 {
                     System.out.println(e);
                 }
-%>
 			
+			%>
+			
+					 
+			<hr>       <hr>
+        
+		</div><!-- End About Inner -->
+	</section><!-- End About Section -->
 
-		</div> <!-- End Features Inner -->
-
-	</section><!-- End Features Section -->
+  
     
 
 	
+	</div>
+	</section><!-- End Team Section -->  
     
 	
     
@@ -137,15 +158,10 @@
 	<script type="text/javascript" src="js/plugins.js"></script>
 
 	<script>
-
   $("a.about-icon").hover(function () {
     $(this).children("i").addClass("fa-spin");
  }, function(){
  	$(this).children("i").removeClass("fa-spin");
  });
-
-
-
 </body>
-
 </html>

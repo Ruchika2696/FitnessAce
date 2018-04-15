@@ -38,6 +38,8 @@
 </head>
 
 <body>
+        <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
+
         <% 
         if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
     %>

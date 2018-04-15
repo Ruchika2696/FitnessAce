@@ -93,73 +93,14 @@ public final class removegym_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t    <div class=\"nav-menu\">\n");
       out.write("\t\t\t\t<ul class=\"nav uppercase\">\n");
       out.write("\t\t\t\t\t<li><a href=\"Admin.jsp\" class=\"scroll\">Home</a></li>       \n");
-      out.write("\t\t\t\t\t<li><a href=\"#about\" class=\"scroll\">Search gym</a></li> \n");
-      out.write("                                        <li><a href=\"#remove\" class=\"scroll\">Remove gym</a></li> \n");
+      out.write("\t\t\t\t\t<li><a href=\"#remove\" class=\"scroll\">Remove gym</a></li> \n");
       out.write("\t\t\t\t\t<li><a href=\"#clients\" class=\"scroll\">Log Out</a></li>\n");
       out.write("\t\t\t\t\t<li><a href=\"#contact\" class=\"scroll\">Contact</a></li>\n");
       out.write("\t\t\t\t</ul>\n");
       out.write("\t\t  </div><!-- End Navigation Menu -->\n");
       out.write("\t\t</div><!-- End Navigation Inner -->\n");
       out.write("\t</section><!-- End Navigation Section -->\n");
-      out.write("            <!-- Controls -->\n");
-      out.write("\t<section id=\"about\" class=\"container waypoint\">\n");
-      out.write("\t\t<div class=\"inner\">        \n");
-      out.write("        \n");
-      out.write("\t\t\t<!-- Header -->\n");
-      out.write("\t\t\t<form name=\"login\" method=\"post\" action=\"\">\n");
-      out.write("                                    \n");
-      out.write("\t\t\t\t<p class=\"colored bold\">Name:</p><input type=\"text\" name=\"gname\" /><br/>\n");
-      out.write("                                        <input type=\"submit\" name=\"submit\" value=\"Done!\"/>\n");
-      out.write("\t\t\t\t\t</form>\n");
-      out.write("               ");
-         
-                   String gname = request.getParameter("gname");
-                  char fchar='/';
-                   if(gname != null)
-                   {
-                       
-                                fchar = gname.charAt(0); }
-                   Connection con = DatabaseConnect.dbconnect();
-        Statement ps = con.createStatement();
-                try{
-        ResultSet rs = ps.executeQuery("select * from gyms where name like='%"+gname+"%' OR name like='"+fchar+"%' ");
-        
-        out.println(" <table  border='2'>");
-        out.println(" <tr> ");
-        out.println("<td> Name </td>");
-        out.println("<td> Address </td>");
-        out.println("<td>Contact</td>");
-        out.println("<td>Email</td>");
-        out.println("</tr>");
-        
-        while(rs.next())
-        {
-        
-        
-        out.println("<tr>");
-        out.println("<td>"+rs.getString(2)+"</td>");
-        out.println("<td>"+rs.getString(3)+"</td>");
-        out.println("<td>"+rs.getString(4)+"</td>");
-        out.println("<td>"+rs.getString(5)+"</td>");
-            
-        out.println("</tr> </table>"); 
-        
-        
-        }    }
-                catch(Exception e)
-                {
-                    System.out.println(e);
-                }
-			
-			
-      out.write("\n");
-      out.write("\t\t\t\n");
-      out.write("\t\t\t\t\t \n");
-      out.write("\t\t\t<hr>       <hr>\n");
-      out.write("        \n");
-      out.write("\t\t</div><!-- End About Inner -->\n");
-      out.write("\t</section><!-- End About Section -->\n");
-      out.write("\n");
+      out.write("   \n");
       out.write("   <section id=\"remove\" class=\"container\">\n");
       out.write("\n");
       out.write("\t\t<div class=\"inner\">\n");
@@ -176,28 +117,31 @@ public final class removegym_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\n");
  
    
-   // String gname= null;
-  
+   String gname= null;
+   String gid=null;
   
     
     
 
-   // gname= request.getParameter("name");
+    gname= request.getParameter("name");
     
-  //
-      //  Connection con = DatabaseConnect.dbconnect();
-      //  Statement ps = con.createStatement();
-      //          try{
-      // int count1 = ps.executeUpdate("delete from gyms where name='"+gname+"'");           
-     //  int count = ps.executeUpdate("delete from gyms where name='"+gname+"'");
+  
+      Connection con = DatabaseConnect.dbconnect();
+        Statement ps = con.createStatement();
+               try{
+                    ResultSet rs = ps.executeQuery("select * from gyms where name'"+gname+"'");
+                    while(rs.next())
+        { gid= rs.getString(1);
+        }
+      int count1 = ps.executeUpdate("delete from user_details where gym_id='"+gid+"'");           
+     int count = ps.executeUpdate("delete from gyms where name='"+gname+"'");
         
-       //out.println("<h1>details are" +name+ " "+ category+"</h1>");
-        
-            //   }
-             //   catch(Exception e)
-              //  {
-               //     System.out.println(e);
-              //  }
+       
+               }
+                catch(Exception e)
+                {
+                   System.out.println(e);
+                }
 
       out.write("\n");
       out.write("\t\t\t\n");

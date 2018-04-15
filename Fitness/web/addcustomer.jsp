@@ -40,6 +40,7 @@
 </head>
 
 <body>
+    <a href="Owner.jsp"><h1 class="colored bold">Go back to Home</h1></a>
      <% 
         if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
     %>
@@ -65,18 +66,18 @@
                                         <p class="colored bold">Customer's email:</p><input type="text" name="oemail"/><br/>
 					<p class="colored bold">Customer's conatct:</p><input type="text" name="ocontact"/><br/>
                                         <p class="colored bold">Customer's password:</p><input type="text" name="opassword"/><br/>
-                                        <p class="colored bold">Customer's DOB:</p><input type="date" name="odob"/><br/>
+                                        <p class="colored bold">Customer's DOB:</p><input type="text" placeholder="yyyy/mm/dd" name="odob"/><br/>
                                         <p class="colored bold">Customer's height in cm:</p><input type="text" name="oheight"/><br/>
                                         <p class="colored bold">Customer's weight:</p><input type="text" name="oweight"/><br/>
-                                        <p class="colored bold">Customer's gender:</p><p class="colored bold">Male:<input type="radio" name="ocategory" value="m"/> Female:<input type="radio" name="ocategory" value="f"/> </p><br/>
+                                        <p class="colored bold">Customer's gender:</p><p class="colored bold">Male:<input type="radio" name="ogender" value="m"/> Female:<input type="radio" name="ogender" value="f"/> </p><br/>
                                         <p class="colored bold">Customer's lifestyle:</p><p class="colored bold">Sedentary:<input type="radio" name="oroutine" value="s"/> Moderate:<input type="radio" name="oroutine" value="m"/> Intense:<input type="radio" name="oroutine" value="i"/></p><br/>
-                                        <p class="colored bold">Customer's password:</p><input type="text" name="opassword"/><br/>
+                                        
                                         <input type="submit" name="submit" value="Done!"/>
 					</form>
 			
 <% 
    String userid = (String)(session.getAttribute("userid"));
-   String ocategory = request.getParameter("ocategory");    
+   String ocategory = "u";    
    String oname =request.getParameter("oname");
    String oaddress= request.getParameter("oaddress");
    String oemail= request.getParameter("oemail");
@@ -88,35 +89,38 @@
    String oheight = request.getParameter("oheight");
    String oweight = request.getParameter("oweight");
    String odob = request.getParameter("odob");
+   String[] date1;
    String ogender = request.getParameter("ogender");
    double routine=0;
-   double bmr=0;
+   double bmr=5;
    int age=0;
-   LocalDate dob = null;
    if(odob!=null)
    {
-   dob = LocalDate.parse(odob);
+       
+   date1 = odob.split("/");
    
-   LocalDate curDate = LocalDate.now();
-   age = Period.between(dob, curDate).getYears();
+   LocalDate date_of_birth = LocalDate.of(Integer.parseInt(date1[0]), Integer.parseInt(date1[1]), Integer.parseInt(date1[2]));
+   LocalDate now = LocalDate.now();
+   age = Period.between(date_of_birth, now).getYears();
    }
    if (oroutine == "s")
                             routine = 1.2;
-                        else if (oroutine=="m")
+   else if (oroutine=="m")
                             routine = 1.4625;
-                        else if (oroutine=="i")
+   else if (oroutine=="i")
                             routine = 1.8125;
-   if (ogender== "m") {
-                            bmr = 66.5 + (13.75 * Double.parseDouble(oweight) + (5.003 * Double.parseDouble(oheight) - (6.755 * age)));
-                        } else if (ogender == "f") {
-                            bmr = 655.1 + (9.563 * Double.parseDouble(oweight) + (1.850 * Double.parseDouble(oheight) - (4.676 * age)));
+   if (ogender == "m") {
+                            bmr = 66.5 + (13.75 * Integer.parseInt(oweight)) + (5.003 * Integer.parseInt(oheight)) - (6.755 * age);
+                        } 
+   else if (ogender == "f") {
+                            bmr = 655.1 + (9.563 * Integer.parseInt(oweight)) + (1.850 * Integer.parseInt(oheight)) - (4.676 * age);
                         }
         Connection con = DatabaseConnect.dbconnect();
         Statement ps = con.createStatement();
         //String sql = "INSERT INTO gyms(gym_id, name, address, contact, email) VALUES(?,?,?,?,?)";
         //PreparedStatement pstmt = con.prepareStatement(sql);      
                 try{
-        ResultSet rs = ps.executeQuery("select * from user_detail where user_id='"+userid+"''");
+        ResultSet rs = ps.executeQuery("select * from user_detail where user_id='"+userid+"'");
         while(rs.next())
         {
         gid = rs.getString("gym_id");
@@ -132,7 +136,7 @@
         try{
        
       int count1 = ps.executeUpdate("insert into user_detail values ('" + oid + "','" + oname + "','" + oemail + "','" + ocontact + "','" + oaddress + "','" + ocategory + "','" + gid + "','" + opassword + "')");
-      int count2 = ps.executeUpdate("insert into customer_personal_data values ('" + oid + "','" + odob + "','" + oheight + "','" + oweight + "','" + ogender + "','" + ocategory + "','" + oroutine + "','" + bmr + "')");
+      int count2 = ps.executeUpdate("insert into customer_personal_data values ('" + oid + "','" + odob + "','" + oheight + "','" + oweight + "','" + ogender + "','"  + oroutine + "','" + bmr + "')");
        //out.println("<h1>details are" +name+ " "+ category+"</h1>");
      
         

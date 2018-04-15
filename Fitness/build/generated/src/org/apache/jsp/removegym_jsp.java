@@ -124,43 +124,28 @@ public final class removegym_jsp extends org.apache.jasper.runtime.HttpJspBase
                 try{
         ResultSet rs = ps.executeQuery("select * from gyms where name like='%"+gname+"%' OR name like='"+fchar+"%' ");
         
-      out.write("\n");
-      out.write("        <table style=\"width:100%\">\n");
-      out.write("            <tr>\n");
-      out.write("                <th class=\"colored bold\">Name</th>\n");
-      out.write("            <th class=\"colored bold\">Address</th>\n");
-      out.write("            <th class=\"colored bold\">Contact</th>\n");
-      out.write("            <th class=\"colored bold\" >Email</th>\n");
-      out.write("        </tr>\n");
-      out.write("        ");
-
+        out.println(" <table  border='2'>");
+        out.println(" <tr> ");
+        out.println("<td> Name </td>");
+        out.println("<td> Address </td>");
+        out.println("<td>Contact</td>");
+        out.println("<td>Email</td>");
+        out.println("</tr>");
+        
         while(rs.next())
         {
         
         
-      out.write("\n");
-      out.write("        <tr>\n");
-      out.write("            <td>");
-      out.print(rs.getString("name") );
-      out.write("</td>\n");
-      out.write("            <td>");
-      out.print(rs.getString("address") );
-      out.write("</td>\n");
-      out.write("            <td>");
-      out.print(rs.getString("contact") );
-      out.write("</td>\n");
-      out.write("            <td>");
-      out.print(rs.getString("email") );
-      out.write("</td>\n");
-      out.write("            \n");
-      out.write("        </tr>\n");
-      out.write("        ");
-
+        out.println("<tr>");
+        out.println("<td>"+rs.getString(2)+"</td>");
+        out.println("<td>"+rs.getString(3)+"</td>");
+        out.println("<td>"+rs.getString(4)+"</td>");
+        out.println("<td>"+rs.getString(5)+"</td>");
+            
+        out.println("</tr> </table>"); 
         
-        }      
-      out.write("</table> ");
-
-                }
+        
+        }    }
                 catch(Exception e)
                 {
                     System.out.println(e);

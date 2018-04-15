@@ -93,7 +93,7 @@
         //String sql = "INSERT INTO gyms(gym_id, name, address, contact, email) VALUES(?,?,?,?,?)";
         //PreparedStatement pstmt = con.prepareStatement(sql);      
                 try{
-        ResultSet rs = ps.executeQuery("select * from user_detail where user_id='"+userid+"''");
+        ResultSet rs = ps.executeQuery("select * from user_detail where user_id='"+userid+"'");
         while(rs.next())
         {
         gid = rs.getString("gym_id");

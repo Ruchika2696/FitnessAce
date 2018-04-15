@@ -91,22 +91,24 @@
    String ogender = request.getParameter("ogender");
    double routine=0;
    double bmr=0;
+   int age=0;
    LocalDate dob = null;
-   if(!(odob.equals(null)))
+   if(odob!=null)
    {
    dob = LocalDate.parse(odob);
-   }
+   
    LocalDate curDate = LocalDate.now();
-   int age = Period.between(dob, curDate).getYears();
-   if (oroutine.equals("s"))
+   age = Period.between(dob, curDate).getYears();
+   }
+   if (oroutine == "s")
                             routine = 1.2;
-                        else if (oroutine.equals("m"))
+                        else if (oroutine=="m")
                             routine = 1.4625;
-                        else if (oroutine.equals("i"))
+                        else if (oroutine=="i")
                             routine = 1.8125;
-   if (ogender.equals("m")) {
+   if (ogender== "m") {
                             bmr = 66.5 + (13.75 * Double.parseDouble(oweight) + (5.003 * Double.parseDouble(oheight) - (6.755 * age)));
-                        } else if (ogender.equals("f")) {
+                        } else if (ogender == "f") {
                             bmr = 655.1 + (9.563 * Double.parseDouble(oweight) + (1.850 * Double.parseDouble(oheight) - (4.676 * age)));
                         }
         Connection con = DatabaseConnect.dbconnect();
@@ -130,7 +132,7 @@
         try{
        
       int count1 = ps.executeUpdate("insert into user_detail values ('" + oid + "','" + oname + "','" + oemail + "','" + ocontact + "','" + oaddress + "','" + ocategory + "','" + gid + "','" + opassword + "')");
-        
+      int count2 = ps.executeUpdate("insert into customer_personal_data values ('" + oid + "','" + odob + "','" + oheight + "','" + oweight + "','" + ogender + "','" + ocategory + "','" + oroutine + "','" + bmr + "')");
        //out.println("<h1>details are" +name+ " "+ category+"</h1>");
      
         

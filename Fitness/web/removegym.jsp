@@ -81,30 +81,29 @@
         Statement ps = con.createStatement();
                 try{
         ResultSet rs = ps.executeQuery("select * from gyms where name like='%"+gname+"%' OR name like='"+fchar+"%' ");
-        %>
-        <table style="width:100%">
-            <tr>
-                <th class="colored bold">Name</th>
-            <th class="colored bold">Address</th>
-            <th class="colored bold">Contact</th>
-            <th class="colored bold" >Email</th>
-        </tr>
-        <%
+        
+        out.println(" <table  border='2'>");
+        out.println(" <tr> ");
+        out.println("<td> Name </td>");
+        out.println("<td> Address </td>");
+        out.println("<td>Contact</td>");
+        out.println("<td>Email</td>");
+        out.println("</tr>");
+        
         while(rs.next())
         {
         
-        %>
-        <tr>
-            <td><%=rs.getString("name") %></td>
-            <td><%=rs.getString("address") %></td>
-            <td><%=rs.getString("contact") %></td>
-            <td><%=rs.getString("email") %></td>
-            
-        </tr>
-        <%
         
-        }      %></table> <%
-                }
+        out.println("<tr>");
+        out.println("<td>"+rs.getString(2)+"</td>");
+        out.println("<td>"+rs.getString(3)+"</td>");
+        out.println("<td>"+rs.getString(4)+"</td>");
+        out.println("<td>"+rs.getString(5)+"</td>");
+            
+        out.println("</tr> </table>"); 
+        
+        
+        }    }
                 catch(Exception e)
                 {
                     System.out.println(e);

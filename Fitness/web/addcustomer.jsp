@@ -63,8 +63,8 @@
                                         <p class="colored bold">Customer id:</p><input type="text" name="oid"/><br/>
                                         <p class="colored bold">Customer name:</p><input type="text" name="oname"/><br/>
                                         <p class="colored bold">Customer's address:</p><input type="textbox" name="oaddress"/><br/>
-                                        <p class="colored bold">Customer's email:</p><input type="text" name="oemail"/><br/>
-					<p class="colored bold">Customer's conatct:</p><input type="text" name="ocontact"/><br/>
+                                        <p class="colored bold">Customer's email:</p><input type="text" name="oemail"pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="invalid"/><br/>
+					<p class="colored bold">Customer's conatct:</p><input type="text" name="ocontact" pattern="^(\+\d{1,3}[- ]?)?\d{10}$" title="10 digits needed"/><br/>
                                         <p class="colored bold">Customer's password:</p><input type="text" name="opassword"/><br/>
                                         <p class="colored bold">Customer's DOB:</p><input type="text" placeholder="yyyy/mm/dd" name="odob"/><br/>
                                         <p class="colored bold">Customer's height in cm:</p><input type="text" name="oheight"/><br/>

@@ -38,7 +38,7 @@
 </head>
 
 <body>
-    <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
+    <a href="Owner.jsp"><h1 class="colored bold">Go back to Home</h1></a>
      <% 
         if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
     %>
@@ -62,8 +62,8 @@
                                         <p class="colored bold">Employee id:</p><input type="text" name="oid"/><br/>
                                         <p class="colored bold">Employee name:</p><input type="text" name="oname"/><br/>
                                         <p class="colored bold">Employee's address:</p><input type="textbox" name="oaddress"/><br/>
-                                        <p class="colored bold">Employee's email:</p><input type="text" name="oemail"/><br/>
-					<p class="colored bold">Employee's conatct:</p><input type="text" name="ocontact"/><br/>
+                                        <p class="colored bold">Employee's email:</p><input type="text" name="oemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="invalid"/><br/>
+					<p class="colored bold">Employee's conatct:</p><input type="text" name="ocontact" pattern="^(\+\d{1,3}[- ]?)?\d{10}$" title="10 digits needed"/><br/>
                                         <p class="colored bold">Employee's password:</p><input type="text" name="opassword"/><br/>
                                         <p class="colored bold">Employee type:</p><p class="colored bold">Instructor:<input type="radio" name="ocategory" value="i"/> Nutritionist:<input type="radio" name="ocategory" value="n"/> </p><br/>
                                         <input type="submit" name="submit" value="Done!"/>

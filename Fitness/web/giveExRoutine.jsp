@@ -38,18 +38,20 @@
 </head>
 
 <body>
-        <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
+        <a href="Instructor.jsp"><h1 class="colored bold">Go back to Home</h1></a>
 			
             <!-- Controls -->
 	<section id="features" class="container">
 		<div class="inner">        
         
 			<!-- Header -->
-			<form name="login" method="post" action="assignExercise.jsp">
+			<form name="login" method="post" action="">
                                     
-				<p class="colored bold">UserId:</p><input type="text" name="uname" /><br/>
-                                <p class="colored bold">ActivityId:</p><input type="text" name="aname" /><br/>
-                                <p class="colored bold">Duration in Minutes:</p><input type="text" name="duration" /><br/>
+				<p class="colored bold">UserId:</p><input type="text" name="uid" /><br/>
+                                <p class="colored bold">Exercise ID:</p><input type="text" name="fid" /><br/>
+                                <p class="colored bold">Duration:</p><input type="text" name="amount" /><br/>
+                                
+                                
                                         <input type="submit" name="submit" value="Done!"/>
 					</form>
                         <div>
@@ -61,9 +63,56 @@
 	</section><!-- End About Section -->
 
    
+  <% 
+           
+   
+   String uid = request.getParameter("uid");    
+   String fid =request.getParameter("fid");
+   String amount= request.getParameter("amount");
+   
+   String status = "N";
+   
+  
+  
+        Connection con = DatabaseConnect.dbconnect();
+        Statement ps = con.createStatement();
+        //String sql = "INSERT INTO gyms(gym_id, name, address, contact, email) VALUES(?,?,?,?,?)";
+        //PreparedStatement pstmt = con.prepareStatement(sql);      
+        
+        try{
+       
+      int count1 = ps.executeUpdate("insert into customer_activity values ("+null+",'" + uid + "','" + fid + "','" + amount + "','" +status+ " ')");
+        
+       //out.println("<h1>details are" +name+ " "+ category+"</h1>");
+     
+        
+ 
+       
+             
+           // pstmt.setString(1, gid);
+            //pstmt.setString(2, gname);
+            //pstmt.setString(3, gaddress);
+            //pstmt.set(4, Long.parseLong(request.getParameter("contact")) );
+            //pstmt.setString(5,gemail);
+            //pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    
+       
+       
+              
+%>
+			
+
+		</div> <!-- End Features Inner -->
+
+	</section><!-- End Features Section -->
     
 
 
+
+    
 	
     
 	<!-- Contact Section -->
@@ -115,10 +164,15 @@
 	<script type="text/javascript" src="js/plugins.js"></script>
 
 	<script>
+
   $("a.about-icon").hover(function () {
     $(this).children("i").addClass("fa-spin");
  }, function(){
  	$(this).children("i").removeClass("fa-spin");
  });
+
+
+
 </body>
+
 </html>

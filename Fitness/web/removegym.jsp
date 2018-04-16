@@ -41,6 +41,7 @@
         <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
 	<section id="features" class="container">
 		<div class="inner">
+                    <form mathod="post" action="">
 				<p class="colored bold">Name:</p><input type="text" name="name" /><br/>
                                         <input type="submit" name="submit" value="Done!"/>
 					</form>

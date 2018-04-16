@@ -38,8 +38,7 @@
 </head>
 
 <body>
-    <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
-	<section id="features" class="container">
+    	<section id="features" class="container">
 
 		<div class="inner">
 
@@ -85,15 +84,20 @@
                   
                 try{
                      
-        ResultSet rs = ps.executeQuery("select * from user_detail where name!='null' and category='u' and gym_id='"+gid+"'");
+        ResultSet rs = ps.executeQuery("SELECT u.user_id,u.name,u.email,u.contact,u.address,up.height,up.weight,up.gender,up.routine,up.bmr from user_detail u,customer_personal_data up where u.user_id=up.user_id and u.name like'"+fchar+"%' and u.gym_id='"+gid+"'");
         %>
         <table style="width:100%">
             <tr>
+                <td class="colored bold"><h2>UserID</h2></td>
                 <td class="colored bold"><h2>Name</h2></td>
                 <td class="colored bold"><h2>Email</h2></td>
                 <td class="colored bold"><h2>Contact</h2></td>
                 <td class="colored bold" ><h2>Address</h2></td>
-                <td class="colored bold" ><h2>Category</h2></td>
+                <td class="colored bold" ><h2>Height(cm)</h2></td>
+                <td class="colored bold" ><h2>Weight</h2></td>
+                <td class="colored bold" ><h2>Gender</h2></td>
+                <td class="colored bold" ><h2>Routine</h2></td>
+                <td class="colored bold" ><h2>BMR</h2></td>
             
             </tr>   
         
@@ -103,11 +107,16 @@
         
         %>
         <tr>
+            <td class="colored bold"><%=rs.getString("user_id") %></td>
             <td class="colored bold"><%=rs.getString("name") %></td>
             <td class="colored bold"><%=rs.getString("email") %></td>
             <td class="colored bold"><%=rs.getString("contact") %></td>
             <td class="colored bold"><%=rs.getString("address") %></td>
-            <td class="colored bold"><%=rs.getString("category") %></td>
+            <td class="colored bold"><%=rs.getString("height") %></td>
+             <td class="colored bold"><%=rs.getString("weight") %></td>
+              <td class="colored bold"><%=rs.getString("gender") %></td>
+                 <td class="colored bold"><%=rs.getString("routine") %></td>
+               <td class="colored bold"><%=rs.getString("bmr") %></td>
             
         </tr>
         <%

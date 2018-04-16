@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
+    <a href="User.jsp"><h1 class="colored bold">Go back to Home</h1></a>
 	<section id="features" class="container">
 
 		<div class="inner">

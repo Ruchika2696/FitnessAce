@@ -38,7 +38,7 @@
 </head>
 
 <body>
-        <a href="Admin.jsp"><h1 class="colored bold">Go back to Home</h1></a>
+        
 			
             <!-- Controls -->
 	<section id="features" class="container">

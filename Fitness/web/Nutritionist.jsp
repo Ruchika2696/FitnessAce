@@ -107,9 +107,11 @@
 			<!-- Header -->
 			<h1 class="header light gray3 fancy"><span class="colored">What are you </span>upto?</h1>
 			<br>
-			<a href="searchcustomer.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Customer Data</span></h3></a>
-			<a href="viewFoodItems.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Diet Items</span></h3>
-                        <a href="giveDiRoutine.jsp"><h3 class="header light gray3 fancy"><span class="colored">Give Diet Routine</span></h3>
+                        <a href="searchcustomer.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Customer Data</span></h3></a><br>
+                        <a href="viewFoodItems.jsp"><h3 class="header light gray3 fancy"><span class="colored">View Diet Items</span></h3><br>
+                            <a href="giveDiRoutine.jsp"><h3 class="header light gray3 fancy"><span class="colored">Give Diet Routine</span></h3><br>
+                            <a href="viewassignedDi.jsp"<h3 class="header light gray3 fancy"><span class="colored">View Assigned Diet Chart</span></h3>   <br> 
+                        <a href="deleteassignedDi.jsp"<h3 class="header light gray3 fancy"><span class="colored">Delete assigned Diet Chart</span></h3><br>
 			<a href="updateMe.jsp"><h3 class="header light gray3 fancy"><span class="colored">Update Information</span></h3>
 			
 			

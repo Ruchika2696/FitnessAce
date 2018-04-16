@@ -60,7 +60,7 @@
                 try{
                      Connection con = DatabaseConnect.dbconnect();
         Statement ps = con.createStatement();
-        ResultSet rs = ps.executeQuery("select * from gyms where name!='null'");
+        ResultSet rs = ps.executeQuery("select * from gyms where name!='null' and name like'"+fchar+"%'");
         %>
         <table style="width:100%">
             <tr>
